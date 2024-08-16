@@ -1,17 +1,10 @@
-from flask import Flask, request, jsonify
+from flask import Flask
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Instagram API Flask App"
+    return '¡Hola, Render!'
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-@app.route('/webhook', methods=['POST'])
-def webhook():
-    data = request.json
-    # Aquí gestionas los datos del webhook de Instagram
-    return jsonify({"status": "success"})
