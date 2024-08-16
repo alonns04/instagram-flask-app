@@ -22,9 +22,7 @@ def subscribe_webhooks():
     else:
         print('Error en la suscripción:', response.status_code, response.text)
 
-@app.before_first_request
-def setup_webhooks():
-    subscribe_webhooks()
+subscribe_webhooks()
 
 @app.route('/')
 def hello_world():
