@@ -1,12 +1,10 @@
-from flask import Flask, request, template_rendered
-import os
-import requests
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    template_rendered('../home/home.html')
+    return render_template('home.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
