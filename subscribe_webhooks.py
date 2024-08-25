@@ -12,7 +12,7 @@ access_token = os.getenv('ACCESS_TOKEN')
 # Definir la URL y parámetros
 url = f"https://graph.instagram.com/v20.0/{ig_id}/subscribed_apps"
 params = {
-    'subscribed_fields': 'comments,messages',
+    'subscribed_fields': 'comments,messages,live_comments,message_reactions,messaging_optins,messaging_postbacks,messaging_referral,messaging_seen',
     'access_token': access_token
 }
 

@@ -1,37 +1,15 @@
-from flask import Flask, request
+from flask import Flask, request, template_rendered
 import os
 import requests
 
 app = Flask(__name__)
 
-def subscribe_webhooks():
-    IG_ID = os.getenv('IG_ID')
-    ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
-
-    response = requests.post(
-        f'https://graph.instagram.com/v20.0/{IG_ID}/subscribed_apps',
-        params={
-            'subscribed_fields': 'comments,messages',
-            'access_token': ACCESS_TOKEN
-        }
-    )
-
-    if response.status_code == 200:
-        print('Suscripción exitosa:', response.json())
-    else:
-        print('Error en la suscripción:', response.status_code, response.text)
-
-subscribe_webhooks()
-
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def home():
+    template_rendered('../home/home.html')
 
-@app.route('/webhook', methods=['POST'])
-def webhook():
-    data = request.get_json()
-    print(data)  # Imprime los datos recibidos en la consola para depuración
-    return '', 200
+
+@app.route('/webhook')
 
 if __name__ == '__main__':
     app.run(debug=True)
